@@ -1,0 +1,8 @@
+FROM openresty/openresty:1.19.3.1-alpine-fat
+
+RUN mkdir /usr/local/share/lua mkdir /usr/local/share/lua/5.1 /app
+ADD https://github.com/umegaya/lua-aws/blob/master/lua-aws-0.1-1.rockspec /app/lua-aws-0.1-1.rockspec
+
+WORKDIR /app
+RUN luarocks install lua-aws-0.1-1.rockspec
+RUN ln -s /usr/local/share/lua/5.1/lua-aws/ /usr/local/openresty/luajit/share/lua/5.1/
