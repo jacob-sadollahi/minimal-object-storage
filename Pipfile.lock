@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5845719aa777df08c9ccdca96dfb99f6164ee8f19b812928c7686a2f79bc70fc"
+            "sha256": "0e2e2c6ba919b417c81c28ac842a9da9354860fe94e3c2d5059a80d4b16cb28a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -253,11 +253,11 @@
         },
         "mongoengine": {
             "hashes": [
-                "sha256:2680426385a03190e0494712081363fcc0c59bf9022a4f6033bcbb76a6f3e488",
-                "sha256:2ec7e4a8cedfffe9e1690ca920bfcb9778146945ab1ba62840a210c43ab7eff7"
+                "sha256:72559546dc9cef7f96850bb8b3a005d3537f9a23a2a27ebf71e1f0c71a83f716",
+                "sha256:9f66c08e2b045bf23a2ca26813a510ec3beb6253f631779f9110555fd8f5a283"
             ],
             "markers": "python_version >= '3.5'",
-            "version": "==0.21.0"
+            "version": "==0.22.0"
         },
         "pycparser": {
             "hashes": [
