@@ -12,7 +12,11 @@ also this could be used for AWS s3(both have almost same endpoint architecture)
 - #### step 1:
 first of all , you should create an `env` file
 
-`the default is env_file.env, required items are:`
+```
+the default is env_file.env, you could edit it inside docker-compose.yml.
+
+required env vars:
+```
 
 - ### JWT_SECRET_KEY
 - ### DB_NAME
