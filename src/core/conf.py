@@ -13,7 +13,7 @@ db = MongoEngine()
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'ChangeMe!@#$')
 jwt = JWTManager(app)
 
-DEBUG = os.getenv("DEBUG", True)
+DEBUG = os.getenv("DEBUG", False)
 db_name = os.getenv("DB_NAME", "mymongo")
 db_username = os.getenv("MONGO_INITDB_ROOT_USERNAME", "mongo_user")
 db_password = quote_plus(os.getenv("MONGO_INITDB_ROOT_PASSWORD", "mongoXYZ123!@#"))
