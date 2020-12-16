@@ -1,5 +1,4 @@
 import mongoengine as me
-from mongoengine import DoesNotExist, QuerySet
 
 
 class BaseModel(me.Document):
