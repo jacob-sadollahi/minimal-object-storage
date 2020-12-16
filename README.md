@@ -21,7 +21,8 @@ required env vars:
 - ### JWT_SECRET_KEY
 - ### DB_NAME
 - ### DB_HOST
-  note: you should write docker name , the used name in docker-compose.y is `mongo-db` 
+  note: you should write docker service name(here is `mongo-db`)
+  
 - ### MONGO_INITDB_ROOT_USERNAME
 - ### MONGO_INITDB_ROOT_PASSWORD
 - ### S3_ACCESS_KEY
