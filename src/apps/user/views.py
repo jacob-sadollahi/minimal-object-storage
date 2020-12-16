@@ -1,3 +1,4 @@
+import datetime
 from core.conf import swag
 from flasgger import SwaggerView
 from apps.user.models import User
@@ -117,11 +118,12 @@ class Auth(SwaggerView):
         try:
             user = User.objects.get(email=email)
         except DoesNotExist:
-            return abort(400, "Email of password is not correct.")
+            return jsonify({"msg": "Email or password is not correct."}), 400
         try:
             ph.verify(user.password, password)
         except exceptions.VerifyMismatchError:
-            return abort(400, "Email of password is not correct.")
+            return jsonify({"msg": "Email or password is not correct."}), 400
 
-        access_token = create_access_token(identity=str(user.id))
+        expires = datetime.timedelta(days=1)
+        access_token = create_access_token(identity=str(user.id), expires_delta=expires)
         return jsonify({'token': access_token})
