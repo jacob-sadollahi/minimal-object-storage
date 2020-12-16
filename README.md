@@ -1,6 +1,6 @@
 ### Minimal object storage communication app
 
-a fun and challenging project to communicate with [ArvanCloud](arvancloud.com) S3
+a fun and challenging project to communicate with [ArvanCloud](https://arvancloud.com) S3
 
 also this could be used for AWS s3(both have almost same endpoint architecture)
 
@@ -12,7 +12,7 @@ also this could be used for AWS s3(both have almost same endpoint architecture)
 - #### step 1:
 first of all , you should create an `env` file
 
-`the default is env_file, required items are:`
+`the default is env_file.env, required items are:`
 
 - ### JWT_SECRET_KEY
 - ### DB_NAME
@@ -27,7 +27,7 @@ first of all , you should create an `env` file
 
 there is also another environment variable called `DEBUG`, but it would not affect if you put in env file, because of `gunicorn`
 - #### step 2:
-create external a volume called object_storage_mongo
+create an external volume called object_storage_mongo
 
 `docker volume create --name=object_storage_mongo`
 - #### step 3:
