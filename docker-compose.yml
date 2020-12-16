@@ -1,17 +1,37 @@
 version: "3"
 
 services:
+  middleware:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.middleware
+    command: "pipenv run gunicorn main:app -b 0.0.0.0:5000"
+    env_file:
+      - env_file.env
+    depends_on:
+      - mongo-db
+
+  web-server:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.webserver
+    env_file:
+      - env_file.env
+    ports:
+      - '8080:8080'
+
+
   mongo-db:
     restart: always
     image: mongo:4.2.7
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo_user
-      MONGO_INITDB_ROOT_PASSWORD: mongoXYZ123!@#
+    env_file:
+      - env_file.env
 
     volumes:
       - object_storage_mongo:/data/db
-    ports:
-      - '27017:27017'
 
 volumes:
   object_storage_mongo:
+    external: true

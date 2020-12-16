@@ -1,8 +1,15 @@
 FROM openresty/openresty:1.19.3.1-alpine-fat
 
+
+RUN apk update && apk add git openssl openssl-dev
 RUN mkdir /usr/local/share/lua mkdir /usr/local/share/lua/5.1 /app
-ADD https://github.com/umegaya/lua-aws/blob/master/lua-aws-0.1-1.rockspec /app/lua-aws-0.1-1.rockspec
+ADD https://raw.githubusercontent.com/umegaya/lua-aws/master/lua-aws-0.1-1.rockspec /app/lua-aws-0.1-1.rockspec
+COPY ./resty_app/api.lua /app/
+COPY ./resty_app/nginx.conf /usr/local/openresty/nginx/conf/
 
 WORKDIR /app
+RUN luarocks install luasec
 RUN luarocks install lua-aws-0.1-1.rockspec
+RUN luarocks install luasocket
 RUN ln -s /usr/local/share/lua/5.1/lua-aws/ /usr/local/openresty/luajit/share/lua/5.1/
+
