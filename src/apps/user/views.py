@@ -56,7 +56,7 @@ class Register(SwaggerView):
     def check_user_duplication(cls, email):
         try:
             User.objects.get(email=email)
-            abort(400, "This email already exist")
+            abort(400, {"msg": "This email already exist"})
         except DoesNotExist:
             pass
 
