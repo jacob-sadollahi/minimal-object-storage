@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  middleware:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.middleware
+    command: "pipenv run gunicorn main:app -b 0.0.0.0:5000"
+    env_file:
+      - env_file.env
+    depends_on:
+      - mongo-db
+    ports:
+      - '5000:5000'
+
+  mongo-db:
+    restart: always
+    image: mongo:4.2.7
+    env_file:
+      - env_file.env
+
+    volumes:
+      - test_object_storage_mongo:/data/db
+
+volumes:
+  test_object_storage_mongo:
+    external: true
