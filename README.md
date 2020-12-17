@@ -56,7 +56,7 @@ after creating env_file.env you could simply run docker-compose.yml
 
 ### Test:
 
-there is several external/integration tests , you can run them by executing `run_tests.sh` script:
+there are several external/integration tests , you can run them by executing `run_tests.sh` script:
 
 `./run_tests.sh`
 
