@@ -53,12 +53,42 @@ after creating env_file.env you could simply run docker-compose.yml
 3. create bucket:
 
  - `example: curl -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDgxNDgxOTYsIm5iZiI6MTYwODE0ODE5NiwianRpIjoiNmIzMmU0NDUtNGZhMS00MDk3LWI1MDAtOTY0ZDBhY2Q3MTdjIiwiZXhwIjoxNjA4MTQ5MDk2LCJpZGVudGl0eSI6IjVmZGE1ODk3ZWIxYWUwNGM0NjBiNzdhZSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.JoxTz2cqP9-VJgXKTCQHron9G49Ky0tkwZur406sMjA' http://127.0.0.1:8080/resty-api/bucket/mybucket56235454`
-   
 
-the logic and reason behind this project was to implement a middleware to control users `bucket` prefix, and using OpenResty/Lua
+### Test:
+
+there is several external/integration tests , you can run them by executing `run_tests.sh` script:
+
+`./run_tests.sh`
+
+the output should looks like this:
+
+```
+test_object_storage_mongo
+Creating network "minimal-object-storage_default" with the default driver
+Creating minimal-object-storage_mongo-db_1 ... done
+Creating minimal-object-storage_middleware_1 ... done
+........
+----------------------------------------------------------------------
+Ran 8 tests in 3.916s
+
+OK
+Stopping minimal-object-storage_middleware_1 ... done
+Stopping minimal-object-storage_mongo-db_1   ... done
+Removing minimal-object-storage_middleware_1 ... done
+Removing minimal-object-storage_mongo-db_1   ... done
+Removing network minimal-object-storage_default
+test_object_storage_mongo
+
+```
+
+this automatically runs test containers and volume ,then at the end destroys them.
+
+### motivation
+
+the reason behind this project was solving `ArvanCloud Challenge`, to implement a middleware to control users `bucket` prefix, using OpenResty/Lua plus Python/Flask
 
 ## Rules:
-lets assume users (A and B) defined in db, and have permission to create bucket with `arvan` prefix 
+let's assume users (A and B) defined in db, and have permission to create bucket with `arvan` prefix 
 1. user A could create buckets with `arvan` prefix
 2. user A could create any bucket with any prefix that is not defined in database or not allowed to another user exclusively
 3. nobody could create bucket with `arvan` prefix , except users A and B
